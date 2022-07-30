@@ -1,0 +1,35 @@
+//MAIN_COFFEE
+#include <iostream>
+
+using namespace std;
+
+#define var //
+#include <ctypes.coffee.h>
+
+#include <stdlib.h>
+
+#include <stdio.h>
+
+auto _main = [](auto argc, auto argv) {
+  auto ptr = fopen(cStr(string("File.TXT")), cStr(string("r")));
+  if (ptr == NULL) {
+    cout << string("Cannot open file ") << endl;
+    return 0;
+  }
+  while (true) {
+    auto chr = fgetc(ptr);
+    if (chr == 10) {
+      printf(cStr(string("\b><\n")));
+    }
+    printf(cStr(string("%c")), chr);
+    if (chr == EOF) {
+      break;
+    }
+  }
+  fclose(ptr);
+  return 0;
+};
+
+int main(int argc, char **argv) {
+	_main(&argc, &argv);
+}
